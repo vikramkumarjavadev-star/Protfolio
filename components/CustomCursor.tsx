@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -36,28 +37,31 @@ const CustomCursor: React.FC = () => {
   }, [mouseX, mouseY]);
 
   return (
+    // Fixed: Cast style object to any to allow MotionValues for transform props
     <motion.div
       className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference flex items-center justify-center hidden md:flex will-change-transform"
-      style={{ x, y, translateX: '-50%', translateY: '-50%' }}
+      style={{ x, y, translateX: '-50%', translateY: '-50%' } as any}
     >
       {/* This div is the actual cursor "body" and will handle the scaling and text centering */}
       {/* Changed base size to 80px diameter (40px radius) */}
+      {/* Fixed: Cast animate/style to any to avoid type errors */}
       <motion.div
         className="relative rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.3)] flex items-center justify-center"
-        style={{ width: 80, height: 80 }}
+        style={{ width: 80, height: 80 } as any}
         animate={{
           // Scaled by 1.5 to become 120px diameter (60px radius) when hovering
           scale: isHovering ? 1.5 : 1, 
-        }}
+        } as any}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
       >
         {/* Text directly inside the scalable cursor body, centered by flex parent */}
+        {/* Fixed: Cast initial/animate props to any to avoid type errors */}
         <motion.span 
           className="z-10 text-black font-black uppercase tracking-widest text-sm overflow-hidden whitespace-nowrap"
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0 } as any}
           animate={{ 
             opacity: isHovering ? 1 : 0,
-          }}
+          } as any}
           transition={{ duration: 0.2 }}
         >
           View

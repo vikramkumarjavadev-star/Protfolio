@@ -1,16 +1,27 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
 */
 
+export interface Course {
+  id: string;
+  title: string;
+  instructor: string;
+  category: string;
+  image: string;
+  duration: string;
+  level: 'Beginner' | 'Intermediate' | 'Advanced';
+  description: string;
+  rating: number;
+}
 
 export interface Artist {
   id: string;
   name: string;
-  genre: string;
   image: string;
+  genre: string;
   day: string;
-  description: string;
 }
 
 export interface ChatMessage {
@@ -21,7 +32,7 @@ export interface ChatMessage {
 
 export enum Section {
   HERO = 'hero',
-  LINEUP = 'lineup',
-  EXPERIENCE = 'experience',
-  TICKETS = 'tickets',
+  COURSES = 'courses',
+  FEATURES = 'features',
+  PRICING = 'pricing',
 }

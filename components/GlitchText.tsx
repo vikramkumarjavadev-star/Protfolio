@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -18,11 +19,12 @@ const GradientText: React.FC<GradientTextProps> = ({ text, as: Component = 'span
   return (
     <Component className={`relative inline-block font-black tracking-tighter isolate ${className}`}>
       {/* Main Gradient Text */}
+      {/* Fixed: Cast animate and style to any to avoid type errors */}
       <motion.span
         className="absolute inset-0 z-10 block bg-gradient-to-r from-white via-[#a8fbd3] via-[#4fb7b3] via-[#637ab9] to-white bg-[length:200%_auto] bg-clip-text text-transparent will-change-[background-position]"
         animate={{
           backgroundPosition: ['0% center', '200% center'],
-        }}
+        } as any}
         transition={{
           duration: 6,
           repeat: Infinity,
@@ -34,7 +36,7 @@ const GradientText: React.FC<GradientTextProps> = ({ text, as: Component = 'span
           WebkitTextFillColor: 'transparent',
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden'
-        }}
+        } as any}
       >
         {text}
       </motion.span>
